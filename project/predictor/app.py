@@ -23,7 +23,7 @@ import google.genai as genai
 
 from fastapi import FastAPI
 from fastapi import APIROUTER
-from fastapi.middleware.cors import CORSMiddleware
+
 from pydantic import BaseModel
 
 
