@@ -8,10 +8,17 @@ Original file is located at
 """
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from predictor.predictor_logic import router as predictor_router
 from bot.bot_logic import router as bot_router
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Dono ko "include" kar lo
 app.include_router(predictor_router, prefix="/predict")
