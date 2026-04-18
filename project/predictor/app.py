@@ -138,7 +138,7 @@ allow_headers=["*"],
                 )
 
 
-@app.post("/api/suggest")
+@router.post("/predict")
 async def suggest(data: dict):
     if "student_data" in data:
         student = data["student_data"]
