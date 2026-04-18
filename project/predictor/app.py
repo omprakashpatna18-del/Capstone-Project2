@@ -22,6 +22,7 @@ import joblib
 import google.genai as genai
 
 from fastapi import FastAPI
+from fastapi import APIROUTER
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -137,7 +138,7 @@ allow_methods=["*"],
 allow_headers=["*"],
                 )
 
-
+router=APIROUTER(
 @router.post("/predict")
 def suggest(data: dict):
     if "student_data" in data:
@@ -202,6 +203,4 @@ Follow the given format:
         "suggestions": suggestions
     }
 
-@app.api_route("/", methods=["GET", "HEAD"])
-async def health_check():
-    return {"status": "online"}
+
