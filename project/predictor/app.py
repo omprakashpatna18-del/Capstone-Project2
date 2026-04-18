@@ -128,14 +128,14 @@ def features_ranked(df):
     return all_features_ranked
 
 
-app = FastAPI(title="Student Marks Predictor")
+#app = FastAPI(title="Student Marks Predictor")
 
 # CORS — HTML pages ko allow karo
-app.add_middleware(
-CORSMiddleware,
-allow_origins=["*"],
-allow_methods=["*"],
-allow_headers=["*"],
+#app.add_middleware(
+#CORSMiddleware,
+#allow_origins=["*"],
+#allow_methods=["*"],
+#allow_headers=["*"],
                 )
 
 router=APIROUTER(
