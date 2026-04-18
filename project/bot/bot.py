@@ -1,6 +1,8 @@
 import os
 import google.genai as genai
-from fastapi import APIRouter
+from fastapi import APIRouter,HTTPException
+class ChatRequest(BaseModel):
+    question: str
 gemini_model=genai.Client(api_key=os.environ.get('chatbot'))
 # goodmorning how can I help you?
 router = APIRouter()
@@ -8,15 +10,17 @@ def simple_bot(question):
   prompt=f""" The student has asked the {question}, give a structured and brief reply."""
   try:
       response = gemini_model.models.generate_content(
-      model="gemini-2.5-flash",contents=prompt)
-      reply= response.text
+      model="gemini-1.5-flash",contents=prompt)
+      return response.text
+    
 
   except Exception as e:
       print("Gemini error:", e)
-      reply="Chatbot temporarily unavailable."
-  return reply
+      return "Chatbot temporarily unavailable."
 @router.post("/chat")  
-def chatbot():
-  text=simple_bot(question)
-  while text not in ['Quit','Bye','Goodbye','Exit']:
-    return simple_bot(question)
+def chatbot(request:Chatrequest):
+  text=request.question
+  if user_text.lower() in ['quit', 'bye', 'goodbye', 'exit']:
+        return {"reply": "Goodbye! Have a great day."}
+    reply = simple_bot(user_text)
+    return {"reply": reply}
