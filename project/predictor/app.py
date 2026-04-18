@@ -139,7 +139,7 @@ allow_headers=["*"],
 
 
 @router.post("/predict")
-async def suggest(data: dict):
+def suggest(data: dict):
     if "student_data" in data:
         student = data["student_data"]
     else:
