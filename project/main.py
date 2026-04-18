@@ -16,3 +16,6 @@ app = FastAPI()
 # Dono ko "include" kar lo
 app.include_router(predictor_router, prefix="/model")
 app.include_router(bot_router, prefix="/bot")
+@app.api_route("/", methods=["GET", "HEAD"])
+async def health_check():
+    return {"status": "online"}
