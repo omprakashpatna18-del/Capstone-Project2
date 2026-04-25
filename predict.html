@@ -475,6 +475,11 @@ async function submitForm() {
 
     localStorage.setItem('predicted_marks', result.predicted_marks);
     localStorage.setItem('suggestions', result.suggestions);
+    localStorage.setItem('p_marks', result.predicted_marks);
+    localStorage.setItem('p_study', data.study_hours);
+    localStorage.setItem('p_sleep', data.sleep_hours);
+    localStorage.setItem('p_attendance', data.class_attendance);
+   
     window.location.href = 'AI mentor advice.html';
 
   } catch(err) {
