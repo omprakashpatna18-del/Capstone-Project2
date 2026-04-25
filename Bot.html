@@ -73,6 +73,28 @@
   }
 
   .nav-links a:hover { color: var(--text); }
+ .btn {
+    margin-top: 4px;
+    width: 100%;
+    padding: 14px;
+    border: 1px solid rgba(192,132,252,0.5);
+    border-radius: 14px;
+    background: linear-gradient(135deg, #7c3aed, #a855f7 50%, #0ea5e9);
+    background-size: 200% 200%;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 0 8px rgba(192,132,252,0.4),
+      inset 0 0 8px rgba(192,132,252,0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: gradShift 4s ease infinite;
+  }
   
   .glass-card {
     background: var(--card);
@@ -151,18 +173,19 @@
 
 <h2 > <i> Good Morning! How can Saraswati help you??</i> </h2>  
 <div class="glass-card" style="padding: 28px; margin: 0 24px;">
- <input type="text" placeholder="Type your question here">
+<input type="text" placeholder="Type your question here" id="question">
       
      
   </div>
+ <button class="btn" onclick="answer()">Answer</button>
  </div>
 <script>
-const marks = localStorage.getItem('predicted_marks');
-const suggestions = localStorage.getItem('suggestions');
+async function answer() {
+ const res = await fetch(`${BACKEND_URL}/api/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(document.getElementbyId("question"))
 
-document.getElementById('marks').innerText = marks;
-document.getElementById('suggestions').innerHTML =
-    suggestions.replace(/\n/g, '<br/>');
 </script>
 
 
