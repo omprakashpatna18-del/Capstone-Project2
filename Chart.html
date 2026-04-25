@@ -37,6 +37,8 @@
         <div class="chart-container">
             <canvas id="studyChart"></canvas>
         </div>
+        <div class="chart-container">
+            <canvas id="attendanceChart"></canvas></div>
     </div>
 
     <script>
@@ -109,7 +111,7 @@
        new Chart(document.getElementById('attendanceChart'), {
          type: 'doughnut',
          data: {
-           labels: ['Attendance', 'Shortage'],
+           labels: ['Attendance', 'AvgAttendance'],
            datasets: [{
               data: [userData.attendance, avgData.attendance],
               backgroundColor: ['#2ecc71', '#ecf0f1'],
