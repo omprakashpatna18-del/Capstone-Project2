@@ -46,9 +46,10 @@
 
         // Fetching User Data from localStorage (Fallback to default if empty)
         const userData = {
-            marks: parseFloat(localStorage.getItem('userMarks')) || 85,
-            sleep: parseFloat(localStorage.getItem('userSleep')) || 6,
-            study: parseFloat(localStorage.getItem('userStudy')) || 5
+            marks: parseFloat(localStorage.getItem('predicted_marks')) || 60,
+            sleep: parseFloat(localStorage.getItem('p_sleep')) || 7,
+            study: parseFloat(localStorage.getItem('p_study')) || 4,
+            attendance: parseFloat(localStorage.getItem('p_attendance'))||70
         };
 
         // --- CHART 1: MARKS (DOUGHNUT) ---
