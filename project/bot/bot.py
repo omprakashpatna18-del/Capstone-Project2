@@ -19,7 +19,7 @@ def simple_bot(question):
       print("Gemini error:", e)
       return "Chatbot temporarily unavailable."
 @router.post("/")  
-def chatbot(request:Chatrequest):
+def chatbot(request:ChatRequest):
   text=request.question
   if text.lower() in ['quit', 'bye', 'goodbye', 'exit']:
         return {"reply": "Goodbye! Have a great day."}
