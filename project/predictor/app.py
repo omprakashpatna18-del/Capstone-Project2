@@ -136,7 +136,7 @@ def features_ranked(df):
 #allow_origins=["*"],
 #allow_methods=["*"],
 #allow_headers=["*"],
-                )
+                
 
 router=APIRouter()
 @router.post("/")
