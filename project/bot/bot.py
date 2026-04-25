@@ -1,6 +1,7 @@
 import os
 import google.genai as genai
 from fastapi import APIRouter,HTTPException
+from pydantic import BaseModel
 class ChatRequest(BaseModel):
     question: str
 gemini_model=genai.Client(api_key=os.environ.get('CHATBOT'))
@@ -17,10 +18,10 @@ def simple_bot(question):
   except Exception as e:
       print("Gemini error:", e)
       return "Chatbot temporarily unavailable."
-@router.post("/chat")  
+@router.post("/")  
 def chatbot(request:Chatrequest):
   text=request.question
-  if user_text.lower() in ['quit', 'bye', 'goodbye', 'exit']:
+  if text.lower() in ['quit', 'bye', 'goodbye', 'exit']:
         return {"reply": "Goodbye! Have a great day."}
-    reply = simple_bot(user_text)
-    return {"reply": reply}
+  reply = simple_bot(text)
+  return {"reply": reply}
