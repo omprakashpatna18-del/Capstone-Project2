@@ -139,7 +139,7 @@ def features_ranked(df):
                 )
 
 router=APIRouter()
-@router.post("/predict")
+@router.post("/")
 def suggest(data: dict):
     if "student_data" in data:
         student = data["student_data"]
