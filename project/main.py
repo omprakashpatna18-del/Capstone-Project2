@@ -9,8 +9,8 @@ Original file is located at
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from predictor.predictor_logic import router as predictor_router
-from bot.bot_logic import router as bot_router
+from predictor.app import router as predictor_router
+from bot.bot import router as bot_router
 
 app = FastAPI()
 app.add_middleware(
