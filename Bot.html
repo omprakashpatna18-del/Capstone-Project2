@@ -198,7 +198,7 @@ async function answer() {
         const response = await fetch(`${BACKEND_URL}/api/chat`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "question": q }) // Backend key 'question' honi chahiye
+            body: JSON.stringify({ "question": request}) // Backend key 'question' honi chahiye
         });
 
         const data = await response.json();
