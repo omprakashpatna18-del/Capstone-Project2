@@ -22,7 +22,7 @@ app.add_middleware(
 
 # Dono ko "include" kar lo
 app.include_router(predictor_router, prefix="/predict")
-app.include_router(bot_router, prefix="/bot")
+app.include_router(bot_router, prefix="/chat")
 @app.api_route("/", methods=["GET", "HEAD"])
 async def health_check():
     return {"status": "online"}
