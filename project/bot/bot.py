@@ -3,7 +3,7 @@ import google.genai as genai
 from fastapi import APIRouter,HTTPException
 class ChatRequest(BaseModel):
     question: str
-gemini_model=genai.Client(api_key=os.environ.get('chatbot'))
+gemini_model=genai.Client(api_key=os.environ.get('CHATBOT'))
 # goodmorning how can I help you?
 router = APIRouter()
 def simple_bot(question):
