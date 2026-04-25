@@ -22,7 +22,7 @@ import joblib
 import google.genai as genai
 
 from fastapi import FastAPI
-from fastapi import APIROUTER
+from fastapi import APIRouter
 
 from pydantic import BaseModel
 
@@ -138,7 +138,7 @@ def features_ranked(df):
 #allow_headers=["*"],
                 )
 
-router=APIROUTER()
+router=APIRouter()
 @router.post("/predict")
 def suggest(data: dict):
     if "student_data" in data:
