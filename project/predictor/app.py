@@ -138,7 +138,7 @@ def features_ranked(df):
 #allow_headers=["*"],
                 )
 
-router=APIROUTER(
+router=APIROUTER()
 @router.post("/predict")
 def suggest(data: dict):
     if "student_data" in data:
