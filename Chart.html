@@ -38,7 +38,8 @@
             <canvas id="studyChart"></canvas>
         </div>
         <div class="chart-container">
-            <canvas id="attendanceChart"></canvas></div>
+            <canvas id="attendanceChart"></canvas>
+        </div>
     </div>
 
     <script>
@@ -109,15 +110,16 @@
 
       // --- CHART 4: ATTENDANCE (GAUGE STYLE) ---
        new Chart(document.getElementById('attendanceChart'), {
-         type: 'doughnut',
-         data: {
-           labels: ['Attendance', 'AvgAttendance'],
-           datasets: [{
-              data: [userData.attendance, avgData.attendance],
-              backgroundColor: ['#2ecc71', '#ecf0f1'],
-              borderWidth: 0
-        }]
-});
+            type: 'bar',
+            data: {
+                labels: ['Attendance'],
+                datasets: [
+                    { label: 'You', data: [userData.attendance], backgroundColor: '#2ecc71' },
+                    { label: 'Average', data: [avgData.attendance], backgroundColor: '#E0E0E0' }
+                ]
+            },
+            options: { scales: { y: { beginAtZero: true, max: 100 } } }
+        });
     </script>
 </body>
 </html>
