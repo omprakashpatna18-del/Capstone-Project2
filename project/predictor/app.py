@@ -183,10 +183,10 @@ Follow the given format:
 """
     try:
         response = gemini_model.models.generate_content(
-            model="gemini-2.5-flash",
+            model="gemini-2.0-flash",
             contents=prompt
         )
-        suggestions = response.text # Fixed: Removed the extra 't'
+        suggestions = response.text 
 
     except Exception as e:
         print("Gemini error:", e)
