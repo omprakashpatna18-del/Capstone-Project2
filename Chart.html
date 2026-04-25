@@ -106,14 +106,14 @@
         });
 
       // --- CHART 4: ATTENDANCE (GAUGE STYLE) ---
-new Chart(document.getElementById('attendanceChart'), {
-    type: 'doughnut',
-    data: {
-        labels: ['Attendance', 'Shortage'],
-        datasets: [{
-            data: [userData.attendance, avgData.attendance],
-            backgroundColor: ['#2ecc71', '#ecf0f1'],
-            borderWidth: 0
+       new Chart(document.getElementById('attendanceChart'), {
+         type: 'doughnut',
+         data: {
+           labels: ['Attendance', 'Shortage'],
+           datasets: [{
+              data: [userData.attendance, avgData.attendance],
+              backgroundColor: ['#2ecc71', '#ecf0f1'],
+              borderWidth: 0
         }]
 });
     </script>
