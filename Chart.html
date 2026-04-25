@@ -110,16 +110,31 @@
 
       // --- CHART 4: ATTENDANCE (GAUGE STYLE) ---
        new Chart(document.getElementById('attendanceChart'), {
-            type: 'bar',
-            data: {
-                labels: ['Attendance'],
-                datasets: [
-                    { label: 'You', data: [userData.attendance], backgroundColor: '#2ecc71' },
-                    { label: 'Average', data: [avgData.attendance], backgroundColor: '#E0E0E0' }
-                ]
+        type: 'bar',
+        data: {
+          labels: ['Attendance'],
+          datasets: [
+            { 
+                label: 'You', 
+                data: [userData.attendance], 
+                backgroundColor: '#2ecc71' 
             },
-            options: { scales: { y: { beginAtZero: true, max: 100 } } }
-        });
+            { 
+                label: 'Average', 
+                data: [avgData.attendance], 
+                backgroundColor: '#E0E0E0' 
+            }
+        ]
+    },
+       options: { 
+         plugins: {
+            title: { display: true, text: 'Attendance vs Average' }
+        },
+        scales: { 
+            y: { beginAtZero: true, max: 100 } 
+        } 
+    } // Options bracket closed
+});
     </script>
 </body>
 </html>
