@@ -7,5 +7,4 @@ scikit-learn
 xgboost
 google-genai
 pydantic
-predictor.predictor_logic
-bot.bot_logic
+python-dotenv
