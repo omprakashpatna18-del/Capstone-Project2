@@ -171,21 +171,45 @@
 <div class="b b2"></div>
 <div class="b b3"></div>
 
-<h2 > <i> Good Morning! How can Saraswati help you??</i> </h2>  
-<div class="glass-card" style="padding: 28px; margin: 0 24px;">
-<input type="text" placeholder="Type your question here" id="question">
-      
-     
-  </div>
- <button class="btn" onclick="answer()">Answer</button>
- </div>
-<script>
-async function answer() {
- const res = await fetch(`${BACKEND_URL}/api/chat`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(document.getElementbyId("question"))
+<h2 style="color: white; margin-top: 20px;"><i>Ask Saraswati Anything...</i></h2>
 
+<div class="glass-card" style="height: auto; min-height: 200px; margin-top: 10px;">
+    <input type="text" id="question" placeholder="Type here..." 
+           style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: rgba(255,255,255,0.1); color: white;">
+    
+    <button class="btn" onclick="answer()" style="margin-top: 15px;">Answer</button>
+
+    <div id="ai-response" style="margin-top: 20px; padding: 10px; color: var(--accent2); font-weight: 500;">
+        </div>
+</div>
+
+<script>
+const BACKEND_URL = "https://capstone-project-3-vu1u.onrender.com";
+
+async function answer() {
+    const q = document.getElementById("question").value;
+    const resBox = document.getElementById("ai-response");
+
+    if(!q) return alert("Please ask something.");
+
+    resBox.innerText = "Thinking..."; // Loading message
+
+    try {
+        const response = await fetch(`${BACKEND_URL}/api/chat`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ "question": q }) // Backend key 'question' honi chahiye
+        });
+
+        const data = await response.json();
+        
+        // Agar backend se 'answer' naam ki key aa rahi hai:
+        resBox.innerText = data.answer || data.reply || "No answer found.";
+
+    } catch (err) {
+        resBox.innerText = "Error: Connection failed.";
+    }
+}
 </script>
 
 
