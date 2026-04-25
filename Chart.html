@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: sans-serif; background: #f4f7f6; padding: 20px; }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .chart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h2 { text-align: center; color: #333; }
+    </style>
+</head>
+<body>
+
+    <h2>Your Performance Dashboard</h2>
+    
+    <div class="dashboard-grid">
+        <div class="chart-container">
+            <canvas id="marksChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="sleepChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="studyChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA HANDLING ---
+        // Hardcoded Averages
+        const avgData = { marks: 75, sleep: 7, study: 4 };
+
+        // Fetching User Data from localStorage (Fallback to default if empty)
+        const userData = {
+            marks: parseFloat(localStorage.getItem('userMarks')) || 85,
+            sleep: parseFloat(localStorage.getItem('userSleep')) || 6,
+            study: parseFloat(localStorage.getItem('userStudy')) || 5
+        };
+
+        // --- CHART 1: MARKS (DOUGHNUT) ---
+        new Chart(document.getElementById('marksChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Your Marks', 'Average Marks'],
+                datasets: [{
+                    data: [userData.marks, avgData.marks],
+                    backgroundColor: ['#36A2EB', '#E0E0E0'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                plugins: { title: { display: true, text: 'Predicted vs Average Marks' } }
+            }
+        });
+
+        // --- CHART 2: SLEEP (POLAR AREA) ---
+        new Chart(document.getElementById('sleepChart'), {
+            type: 'polarArea',
+            data: {
+                labels: ['Your Sleep', 'Average Sleep'],
+                datasets: [{
+                    data: [userData.sleep, avgData.sleep],
+                    backgroundColor: ['rgba(255, 159, 64, 0.6)', 'rgba(75, 192, 192, 0.6)']
+                }]
+            },
+            options: {
+                plugins: { title: { display: true, text: 'Sleep Hours Comparison' } }
+            }
+        });
+
+        // --- CHART 3: STUDY (HORIZONTAL BAR) ---
+        new Chart(document.getElementById('studyChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Study Hours'],
+                datasets: [{
+                    label: 'You',
+                    data: [userData.study],
+                    backgroundColor: '#9966FF'
+                }, {
+                    label: 'Average',
+                    data: [avgData.study],
+                    backgroundColor: '#C9CBCF'
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                plugins: { title: { display: true, text: 'Daily Study Hours' } },
+                scales: { x: { beginAtZero: true } }
+            }
+        });
+
+      // --- CHART 4: ATTENDANCE (GAUGE STYLE) ---
+new Chart(document.getElementById('attendanceChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Attendance', 'Shortage'],
+        datasets: [{
+            data: [userData.attendance, avgData.attendance],
+            backgroundColor: ['#2ecc71', '#ecf0f1'],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        rotation: -90, // Semi-circle banane ke liye
+        circumference: 180,
+        plugins: {
+            title: { display: true, text: 'Attendance Percentage' }
+        }
+    }
+});
+    </script>
+</body>
+</html>
