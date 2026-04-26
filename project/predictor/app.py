@@ -32,7 +32,7 @@ from pydantic import BaseModel
 
 
 
-model = joblib.load("project/predictor/xgb_model.joblib")
+model = joblib.load("xgb_model.joblib")
 class StudentData(BaseModel):
     age: int
     gender: str
