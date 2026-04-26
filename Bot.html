@@ -204,7 +204,7 @@ async function answer() {
         const data = await response.json();
         
         // Agar backend se 'answer' naam ki key aa rahi hai:
-        resBox.innerText = data.answer || data.reply || "No answer found.";
+        resBox.innerText = data.reply || "No answer found.";
 
     } catch (err) {
         resBox.innerText = "Error: Connection failed.";
