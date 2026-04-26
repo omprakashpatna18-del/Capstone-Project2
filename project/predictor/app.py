@@ -183,7 +183,7 @@ Follow the given format:
 """
     try:
         response = gemini_model.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-1.5-flash",
             contents=prompt
         )
         suggestions = response.text 
