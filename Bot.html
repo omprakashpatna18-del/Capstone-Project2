@@ -199,15 +199,15 @@ async function answer() {
     resBox.innerText = "Thinking..."; // Loading message
 
     try {
-        const response = await fetch(`${BACKEND_URL}/api/chat`, {
+        const response = await fetch(`${BACKEND_URL}/chat`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "question": request}) // Backend key 'question' honi chahiye
+            body: JSON.stringify({ "question": q}) 
         });
 
         const data = await response.json();
         
-        // Agar backend se 'answer' naam ki key aa rahi hai:
+        
         resBox.innerText = data.reply || "No answer found.";
 
     } catch (err) {
