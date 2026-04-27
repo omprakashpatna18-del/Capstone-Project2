@@ -8,7 +8,7 @@ gemini_model=genai.Client(api_key=os.environ.get('CHATBOT'))
 # goodmorning how can I help you?
 router = APIRouter()
 def simple_bot(question):
-  prompt=f""" The student has asked the {question}, give a structured and brief reply."""
+  prompt=f""" The student has asked the {question}, give a structured and brief reply. If the {question} is not related to studies or performance enhancement factors like sleep hours,sleep quality,etc,refrain from replying."""
   try:
       response = gemini_model.models.generate_content(
       model="gemini-2.5-flash",contents=prompt)
