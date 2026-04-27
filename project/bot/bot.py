@@ -11,7 +11,7 @@ def simple_bot(question):
   prompt=f""" The student has asked the {question}, give a structured and brief reply."""
   try:
       response = gemini_model.models.generate_content(
-      model="gemini-1.5-flash",contents=prompt)
+      model="gemini-2.5-flash",contents=prompt)
       return response.text
     
 
