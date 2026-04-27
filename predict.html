@@ -464,7 +464,7 @@ async function submitForm() {
       exam_difficulty: inputs[11].value.toLowerCase(),
     };
 
-    alert("Data: " + JSON.stringify(data)); // ← Debug
+    alert("Data: " + JSON.stringify(data));
 
     const res = await fetch(`${BACKEND_URL}/predict`, {
       method: 'POST',
@@ -473,7 +473,7 @@ async function submitForm() {
     });
 
     const result = await res.json();
-    alert("Result: " + JSON.stringify(result)); // ← Debug
+    alert("Result: " + JSON.stringify(result));
 
     localStorage.setItem('predicted_marks', result.predicted_marks);
     localStorage.setItem('suggestions', result.suggestions);
@@ -486,9 +486,10 @@ async function submitForm() {
 
   } catch(err) {
     alert("Error: " + err.message);
+    alert("Make sure you have put all the data");
   }
  }
-  // ← Yeh add karo
+  
  
  </script>
  
