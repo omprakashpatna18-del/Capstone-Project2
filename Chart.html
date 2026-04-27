@@ -6,8 +6,72 @@
     <title>Student Performance Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { font-family: sans-serif; background: #f4f7f6; padding: 20px; }
-        .dashboard-grid {
+        :root {
+    --bg: #06000f;
+    --accent: #b46fff;
+    --accent2: #5ee7ff;
+    --accent3: #ff6eb4;
+    --text: #f0e6ff;
+    --muted: #9b84b8;
+    --border: rgba(180,100,255,0.2);
+    --card: rgba(255,255,255,0.05);
+  }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px 40px;
+    position: relative;
+    overflow-x: hidden;
+  } 
+ .b { position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
+  .b1 { width:500px;height:500px;background:rgba(139,60,255,0.3);top:-150px;left:-150px;animation:bl 12s ease-in-out infinite alternate; }
+  .b2 { width:350px;height:350px;background:rgba(56,189,248,0.18);bottom:-100px;right:-100px;animation:bl 9s ease-in-out infinite alternate-reverse; }
+  .b3 { width:250px;height:250px;background:rgba(244,114,182,0.15);top:50%;left:60%;animation:bl 11s ease-in-out infinite alternate; }
+  @keyframes bl { to { transform: translate(25px,20px) scale(1.08); } }
+ 
+  /* ── NAVBAR ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(6,0,15,0.7);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-size: 16px;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: left;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+  .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
@@ -18,7 +82,24 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        h2 { text-align: center; color: #333; }
+  
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 30px 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 20px;
+  }
+
+  footer span {
+    color: var(--accent);
+  }
+
+  
+h2 { text-align: center; color: FFFFFF; }
     </style>
 </head>
 <body>
