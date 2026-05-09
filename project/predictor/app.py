@@ -27,11 +27,6 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 
 
-
-
-
-
-
 model = joblib.load("xgb_model.joblib")
 class StudentData(BaseModel):
     age: int
@@ -71,7 +66,7 @@ def helper(data):
     like your notebook, and returns XGBoost prediction.
     """
 
-    # Build raw input dict (student_id excluded)
+    # Build raw input dict 
     raw = {
         'age'             : int(data.get('age', 20)),
         'gender'          : str(data.get('gender', 'male')).lower().strip(),
@@ -88,7 +83,7 @@ def helper(data):
 
     df = pd.DataFrame([raw], columns=FEATURE_COLUMNS)
  
-    # Apply same encoding as your notebook
+    #  encoding 
     for col, mapping in master_map.items():
         if col in df.columns:
             val = str(df[col].iloc[0]).lower().strip()
@@ -119,7 +114,7 @@ def predict_marks(df):
 
 def features_ranked(df):
 
-    # Feature importance (same as your notebook)
+    # Feature importance 
     importances = model.feature_importances_
     all_features_ranked = sorted(
         zip(importances, FEATURE_COLUMNS), reverse=True
@@ -128,14 +123,6 @@ def features_ranked(df):
     return all_features_ranked
 
 
-#app = FastAPI(title="Student Marks Predictor")
-
-# CORS — HTML pages ko allow karo
-#app.add_middleware(
-#CORSMiddleware,
-#allow_origins=["*"],
-#allow_methods=["*"],
-#allow_headers=["*"],
                 
 
 router=APIRouter()
@@ -190,14 +177,14 @@ Follow the given format:
 
     except Exception as e:
         print("Gemini error:", e)
-        # Fallback suggestions
+        # Fallback suggestions 
         suggestions = """1. Strengths: Potential identified.
 2. Areas to be Improved: Focus on weak spots.
 3. Precautions: Maintain consistency.
 4. Suggestions: Balance study and rest.
 5. Overall Feedback: Good effort!"""
 
-    # 5. Final Return (Aligned at 4 spaces)
+    
     return {
         "predicted_marks": marks,
         "suggestions": suggestions
